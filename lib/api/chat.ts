@@ -34,7 +34,7 @@ export interface MessageCountResponse {
 export const chatAPI = {
   // V0 calls chatAPI.createSession(mood, token)
   createSession: async (mood: string, token?: string) => {
-    const res = await fetch(`${API_BASE_URL}/chat`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/chat`, {
       method: 'POST',
       headers: getHeaders(token),
       body: JSON.stringify({ mood }),
@@ -44,7 +44,7 @@ export const chatAPI = {
 
   // V0 calls chatAPI.getSessions(token)
   getSessions: async (token?: string) => {
-    const res = await fetch(`${API_BASE_URL}/chat`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/chat`, {
       headers: getHeaders(token),
     });
     return res.json();
@@ -52,7 +52,7 @@ export const chatAPI = {
 
   // V0 calls chatAPI.getSession(id, token)
   getSession: async (id: string, token?: string) => {
-    const res = await fetch(`${API_BASE_URL}/chat/${id}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/chat/${id}`, {
       headers: getHeaders(token),
     });
     return res.json();
@@ -60,7 +60,7 @@ export const chatAPI = {
 
   // V0 calls chatAPI.sendMessage(id, message, token)
   sendMessage: async (chatId: string, message: string, token?: string) => {
-    const res = await fetch(`${API_BASE_URL}/chat/${chatId}/message`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/chat/${chatId}/message`, {
       method: 'POST',
       headers: getHeaders(token),
       body: JSON.stringify({ message }),
@@ -70,7 +70,7 @@ export const chatAPI = {
 
   // V0 calls chatAPI.endSession(id, token)
   endSession: async (chatId: string, token?: string) => {
-    const res = await fetch(`${API_BASE_URL}/chat/${chatId}/end`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/chat/${chatId}/end`, {
       method: 'POST',
       headers: getHeaders(token),
       body: JSON.stringify({}),
@@ -80,7 +80,7 @@ export const chatAPI = {
 
   // V0 calls chatAPI.getMessageCount(chatId, token)
   getMessageCount: async (chatId: string, token?: string): Promise<MessageCountResponse> => {
-    const res = await fetch(`${API_BASE_URL}/chat-message/${chatId}/count`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/chat-message/${chatId}/count`, {
       headers: getHeaders(token),
     });
     const responseText = await res.text();
@@ -102,7 +102,7 @@ export const chatAPI = {
 
   // Add to chatAPI object
   deleteSession: async (chatId: string, token?: string) => {
-    const res = await fetch(`${API_BASE_URL}/chat/${chatId}/delete`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/chat/${chatId}/delete`, {
       method: 'DELETE',
       headers: getHeaders(token),
     });

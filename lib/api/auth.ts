@@ -27,7 +27,7 @@ const getHeaders = () => ({
 
 export const authAPI = {
   register: async (data: { email: string; password: string; name: string }) => {
-    const res = await fetch(`${API_BASE_URL}/auth/register`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/register`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data),
@@ -36,7 +36,7 @@ export const authAPI = {
   },
 
   login: async (data: { email: string; password: string }) => {
-    const res = await fetch(`${API_BASE_URL}/auth/login`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data),
@@ -45,14 +45,14 @@ export const authAPI = {
   },
 
   me: async () => {
-    const res = await fetch(`${API_BASE_URL}/auth/me`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/me`, {
       headers: getHeaders(),
     });
     return res.json();
   },
 
   forgotPassword: async (email: string) => {
-    const res = await fetch(`${API_BASE_URL}/auth/forgot-password`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/forgot-password`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email }),
@@ -65,7 +65,7 @@ export const authAPI = {
   },
 
   resetPassword: async (data: { token: string; password: string }) => {
-    const res = await fetch(`${API_BASE_URL}/auth/reset-password`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/reset-password`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data),
@@ -77,7 +77,7 @@ export const authAPI = {
     return response;
   },
   googleLogin: async (credential: string) => {
-    const res = await fetch(`${API_BASE_URL}/auth/google`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/google`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ credential }),

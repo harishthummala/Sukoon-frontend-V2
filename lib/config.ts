@@ -1,4 +1,4 @@
-const DEFAULT_API_BASE_URL = 'http://localhost:8080';
+const DEFAULT_API_BASE_URL = 'http://16.176.206.236';
 const DEFAULT_GOOGLE_CLIENT_ID =
   '772681843196-dqudmnoc3iqf2np8cjl2836enqtam0st.apps.googleusercontent.com';
 

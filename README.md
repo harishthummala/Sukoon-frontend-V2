@@ -1,4 +1,4 @@
-# Sukoon - Mental Wellness Companion
+ Sukoon - Mental Wellness Companion
 
 ---
 
@@ -10,7 +10,7 @@ A beautiful, modern mental wellness application built with Next.js that connects
 
 ---
 
-### Core Features
+## Core Features
 - **8 Mood Selection**: Happy, Calm, Neutral, Sad, Anxious, Stressed, Angry, Tired
 - **AI-Powered Chat**: Groq-powered conversations via backend
 - **Message Counter**: 20 messages per chat limit tracking
@@ -20,14 +20,14 @@ A beautiful, modern mental wellness application built with Next.js that connects
 
 ---
 
-### Authentication
+## Authentication
 - Email/Password registration and login
 - Google OAuth integration (requires credentials)
 - Secure JWT token storage in localStorage
 
 ---
 
-### Design
+## Design
 - Gen Z/Millennial aesthetic with calming color palette (purple, blue, mint)
 - Fully responsive mobile-first design
 - Smooth animations and transitions

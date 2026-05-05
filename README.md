@@ -4,24 +4,32 @@ A beautiful, modern mental wellness application built with Next.js that connects
 
 ## Features
 
+---
+
 ### Core Features
 - **8 Mood Selection**: Happy, Calm, Neutral, Sad, Anxious, Stressed, Angry, Tired
-- **AI-Powered Chat**: Groq-powered conversations via your backend
-- **Message Counter**: 20 messages per day limit tracking
+- **AI-Powered Chat**: Groq-powered conversations via backend
+- **Message Counter**: 20 messages per chat limit tracking
 - **Session Summaries**: Detailed insights after each chat session
 - **Personal Notes**: Create, edit, and organize private reflections
 - **Chat History**: Access previous conversations from the sidebar
+
+---
 
 ### Authentication
 - Email/Password registration and login
 - Google OAuth integration (requires credentials)
 - Secure JWT token storage in localStorage
 
+---
+
 ### Design
 - Gen Z/Millennial aesthetic with calming color palette (purple, blue, mint)
 - Fully responsive mobile-first design
 - Smooth animations and transitions
 - Accessibility-first approach with semantic HTML
+
+---
 
 ## Tech Stack
 

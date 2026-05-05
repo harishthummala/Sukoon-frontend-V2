@@ -12,21 +12,21 @@ const normalizeApiBaseUrl = (value: string) => {
   try {
     new URL(normalized);
   } catch {
-    return `${DEFAULT_API_BASE_URL}/api`;
+    return DEFAULT_API_BASE_URL;
   }
 
   return normalized.endsWith('/api') ? normalized : `${normalized}/api`;
 };
 
 export const GOOGLE_CLIENT_ID =
-  process.env.VITE_GOOGLE_CLIENT_ID ||
   process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID ||
   DEFAULT_GOOGLE_CLIENT_ID;
 
 export const getApiBaseUrl = () => {
   const configured =
-    process.env.VITE_API_BASE_URL ||
+    process.env.NEXT_PUBLIC_API_URL ||
     process.env.NEXT_PUBLIC_API_BASE_URL ||
+    process.env.VITE_API_BASE_URL ||
     DEFAULT_API_BASE_URL;
   return normalizeApiBaseUrl(configured);
 };

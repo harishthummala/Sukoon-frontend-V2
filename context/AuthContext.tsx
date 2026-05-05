@@ -8,7 +8,7 @@ interface AuthContextType {
   user: User | null;
   token: string | null;
   loading: boolean;
-  googleLogin: (credential: string) => Promise<void>;
+  googleAuth: (credential: string, mode: 'login' | 'register') => Promise<void>;
   login: (email: string, password: string) => Promise<void>;
   register: (email: string, password: string, name: string) => Promise<void>;
   logout: () => void;
@@ -40,8 +40,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   }, []);
 
-  const googleLogin = async (credential: string) => {
-    const response = await authAPI.googleLogin(credential);
+  const googleAuth = async (credential: string, mode: 'login' | 'register') => {
+    const response = await authAPI.googleAuth({ credential, mode });
     if(response.error) {
         throw new Error(response.error);
     }
@@ -81,7 +81,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         user,
         token,
         loading,
-        googleLogin,
+        googleAuth,
         login,
         register,
         logout,

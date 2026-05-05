@@ -1,5 +1,7 @@
 import { API_BASE_URL } from '@/lib/config';
 
+const apiUrl = (path: string) => `${API_BASE_URL}${path}`;
+
 const getHeaders = (token?: string) => ({
   'Content-Type': 'application/json',
   'Authorization': `Bearer ${token || (typeof window !== 'undefined' ? localStorage.getItem('auth_token') || '' : '')}`,
@@ -24,7 +26,7 @@ const normalizeNote = (note: Partial<Note>): Note => ({
 export const notesAPI = {
   // V0 calls notesAPI.getNotes(token)
   getNotes: async (token?: string) => {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/notes`, {
+    const res = await fetch(apiUrl('/notes'), {
       headers: getHeaders(token),
     });
     const data = await res.json();
@@ -44,7 +46,7 @@ export const notesAPI = {
 
   // V0 calls notesAPI.createNote(title, content, token)
   createNote: async (title: string, content: string, token?: string) => {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/notes`, {
+    const res = await fetch(apiUrl('/notes'), {
       method: 'POST',
       headers: getHeaders(token),
       body: JSON.stringify({ title, content }),
@@ -54,7 +56,7 @@ export const notesAPI = {
 
   // V0 calls notesAPI.updateNote(id, title, content, token)
   updateNote: async (id: string, title: string, content: string, token?: string) => {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/notes/${id}`, {
+    const res = await fetch(apiUrl(`/notes/${id}`), {
       method: 'PUT',
       headers: getHeaders(token),
       body: JSON.stringify({ title, content }),
@@ -64,7 +66,7 @@ export const notesAPI = {
 
   // V0 calls notesAPI.deleteNote(id, token)
   deleteNote: async (id: string, token?: string) => {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/notes/${id}`, {
+    const res = await fetch(apiUrl(`/notes/${id}`), {
       method: 'DELETE',
       headers: getHeaders(token),
     });

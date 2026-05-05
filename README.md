@@ -1,4 +1,4 @@
-# Sukoon - Mental Wellness Chat App
+# Sukoon - Mental Wellness Companion
 
 A beautiful, modern mental wellness application built with Next.js that connects to your Java Spring Boot backend. Sukoon provides a safe space for users to express their feelings, chat with an AI companion, and maintain personal wellness notes.
 

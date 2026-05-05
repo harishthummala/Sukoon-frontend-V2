@@ -9,13 +9,38 @@ interface SessionSummaryProps {
   messages: ChatMessage[];
 }
 
+const getTimestamp = (value?: string) => {
+  if (!value) return null;
+
+  const timestamp = new Date(value).getTime();
+  return Number.isNaN(timestamp) ? null : timestamp;
+};
+
+const getSessionDurationMinutes = (session: ChatSession, messages: ChatMessage[]) => {
+  const sessionStartedAt = getTimestamp(session.createdAt) ?? Date.now();
+  const sessionUpdatedAt = getTimestamp(session.updatedAt);
+  const latestMessageAt = messages.reduce<number | null>((latestTimestamp, message) => {
+    const messageTimestamp = getTimestamp(message.createdAt);
+    if (messageTimestamp === null) return latestTimestamp;
+
+    return latestTimestamp === null
+      ? messageTimestamp
+      : Math.max(latestTimestamp, messageTimestamp);
+  }, null);
+  const sessionEndedAt = Math.max(
+    sessionStartedAt,
+    sessionUpdatedAt ?? sessionStartedAt,
+    latestMessageAt ?? sessionStartedAt
+  );
+  const duration = Math.ceil((sessionEndedAt - sessionStartedAt) / 60000);
+
+  return messages.length > 0 ? Math.max(1, duration) : Math.max(0, duration);
+};
+
 export default function SessionSummary({ session, messages }: SessionSummaryProps) {
   const userMessages = messages.filter((m) => m.sender === 'user');
   const assistantMessages = messages.filter((m) => m.sender === 'assistant');
-  const sessionUpdatedAt = session.updatedAt ?? session.createdAt;
-  const duration = Math.ceil(
-    (new Date(sessionUpdatedAt).getTime() - new Date(session.createdAt).getTime()) / 60000
-  );
+  const duration = getSessionDurationMinutes(session, messages);
 
   const getSummaryText = () => {
     if (messages.length === 0) return 'No messages in this session';

@@ -69,7 +69,7 @@ export function GoogleAuthButton({ mode, onError }: GoogleAuthButtonProps) {
             onError={() => onError('Google authentication failed. Please try again.')}
             text={mode === 'register' ? 'signup_with' : 'signin_with'}
             theme="outline"
-            size="large"
+            size="medium"
             shape="rectangular"
             logo_alignment="left"
             width={String(buttonWidth)}

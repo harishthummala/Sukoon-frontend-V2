@@ -1,4 +1,4 @@
- Sukoon - Mental Wellness Companion
+# Sukoon - Mental Wellness Companion
 
 ---
 

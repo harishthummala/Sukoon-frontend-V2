@@ -1,17 +1,19 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  env: {
-    VITE_GOOGLE_CLIENT_ID:
-      process.env.VITE_GOOGLE_CLIENT_ID ||
-      '772681843196-dqudmnoc3iqf2np8cjl2836enqtam0st.apps.googleusercontent.com',
-    VITE_API_BASE_URL: process.env.VITE_API_BASE_URL || 'http://localhost:8080',
+  async headers() {
+    return [
+      {
+        source: '/api/:path*',
+        headers: [
+          { key: 'Access-Control-Allow-Origin', value: '*' },
+        ],
+      },
+    ];
   },
-  typescript: {
-    ignoreBuildErrors: true,
+  // Allow HTTP API calls from HTTPS frontend
+  experimental: {
+    allowedDevOrigins: ['http://16.176.206.236'],
   },
-  images: {
-    unoptimized: true,
-  },
-}
+};
 
-export default nextConfig
+export default nextConfig;
